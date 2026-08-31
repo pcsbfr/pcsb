@@ -1,9 +1,9 @@
-# pcsb
+
 <p align="center">
   <img src="assets/logo.png" alt="PCSB Logo" width="320">
 </p>
 
-<h1 align="center">PCSB</h1>
+<h1 align="center"></h1>
 
 <p align="center">
   A lightweight, customized Windows experience built for clean and simple installations.
