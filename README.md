@@ -15,103 +15,234 @@
 
 ---
 
-## About PCSB
+PCSB --- Complete Installation Guide
 
-PCSB is a customized Windows installation designed to provide a lightweight, clean and straightforward experience.
+PCSB is a customized Windows installation designed around a simple
+two-USB workflow.
 
-It includes a customized installation environment, PCSB branding and a simple installation process.
+[!WARNING] PCSB can erase entire disks and USB drives. Back up
+important data before continuing. Only use PCSB on computers and
+storage devices that you own or are explicitly authorized to modify.
 
-> [!IMPORTANT]
-> PCSB is intended for computers that you own or are authorized to erase and reinstall.
-> Always back up your important files before starting.
+1. What You Need
 
-## Download
+A Windows 10 or Windows 11 PC
 
-Download the latest PCSB release from the **Releases** section of this repository.
+Administrator authorization
 
-You will need:
+Two USB drives
 
-- A PCSB ISO
-- A USB drive
-- PCSB Flasher
-- A compatible Windows PC
+PCSB USB Creator
 
-## Installation
+PCSB-WIPE-FINAL.iso
 
-### 1. Create your PCSB USB
+PCSB-FINAL-TEST.iso
 
-1. Download the latest PCSB ISO.
-2. Connect your USB drive.
-3. Run `PCSB-Flasher.cmd` as Administrator.
-4. Select your USB drive.
-5. Confirm the operation.
-6. Wait for the flashing process to finish.
+USB     Image                   Purpose
 
-> [!WARNING]
-> All data stored on the selected USB drive will be erased.
+USB 1   PCSB-WIPE-FINAL.iso   PCSB Mini OS / disk preparation
+USB 2   PCSB-FINAL-TEST.iso   Full PCSB installation
 
-### 2. Prepare for a clean installation
+2. Administrator Access
 
-Back up everything you want to keep.
+PCSB USB Creator requires administrator privileges to access,
+repartition and format physical USB drives.
 
-Run the PCSB clean-install preparation tool as Administrator and carefully verify the selected system disk before confirming the operation.
+Normally, right-click PCSB USB Creator → Run as administrator, then
+approve the Windows UAC prompt.
 
-> [!CAUTION]
-> This operation permanently erases the selected system disk, including Windows, applications and personal files.
+If you already have an authorized administrator session, you can
+optionally create a dedicated local PCSB account from an elevated
+Command Prompt:
 
-### 3. Verify the clean state
+net user PCSBAdmin * /add
+net localgroup Administrators PCSBAdmin /add
 
-After the disk has been erased:
+On a French Windows installation, the localized group name may be:
 
-1. Keep the PCSB USB disconnected.
-2. Start the computer once.
-3. Verify that the previous operating system no longer boots.
-4. Turn the computer off.
+net localgroup Administrateurs PCSBAdmin /add
 
-A `No bootable device`, `No operating system` or firmware screen may appear.
+[!IMPORTANT] These commands must be run from an already-authorized
+elevated administrator session. They are not a method for bypassing an
+administrator password or organizational restrictions.
 
-### 4. Install PCSB
+3. Create USB 1 --- PCSB Mini OS
 
-1. Connect the PCSB USB drive.
-2. Turn on the computer.
-3. Start from the PCSB USB drive.
-4. Wait for PCSB Setup to appear.
-5. Select the unallocated space on the empty internal drive.
-6. Continue the installation.
+Connect the first USB drive.
 
-PCSB Setup will create the required partitions automatically.
+Open PCSB USB Creator as administrator.
 
-### 5. Finish setup
+Under PCSB Mini OS USB, select the correct USB.
 
-Complete the initial setup until you reach the PCSB desktop.
+Verify its model and capacity.
 
-Then run:
+Select Flash USB.
 
-```text
-Finish PCSB.cmd
-```
+Confirm the erase operation.
 
-Follow the on-screen instructions and restart the computer when requested.
+Wait for completion.
 
-## Requirements
+[!CAUTION] Everything on the selected USB drive will be erased.
 
-- 64-bit compatible PC
-- UEFI firmware
-- USB drive
-- Enough storage for Windows
-- Administrator access when creating the installation media
+4. Create USB 2 --- PCSB Installation
 
-## Disclaimer
+Connect the second USB drive.
 
-PCSB is an independent project and is not affiliated with or endorsed by Microsoft.
+Under PCSB Installation USB, select it.
 
-Windows is a trademark of Microsoft Corporation.
+Verify its model and capacity.
 
-PCSB must only be used on computers you own or have permission to reinstall.
+Select Flash USB.
 
----
+Confirm the erase operation.
 
-<p align="center">
-  <strong>PCSB</strong><br>
-  Clean Windows. Simple installation.
-</p>
+Wait for completion.
+
+PCSB USB Creator automatically handles the FAT32 file-size limitation by
+splitting a large install.wim when necessary.
+
+5. Boot from USB
+
+Try the manufacturer's normal one-time boot menu first. Common keys
+include F9, F10, F11, F12, Esc, or Del, depending on the computer.
+
+Shut down the computer.
+
+Connect USB 1 --- PCSB Mini OS.
+
+Turn it on.
+
+Immediately press the manufacturer's boot-menu key.
+
+Select the UEFI entry for the PCSB USB drive.
+
+Common examples:
+
+Manufacturer   Common boot-menu key
+
+HP             Esc / F9
+Dell           F12
+Lenovo         F12
+ASUS           Esc
+Acer           F12
+MSI            F11
+
+6. If USB Boot Is Unavailable --- Advanced Startup
+
+If Windows still starts normally:
+
+Settings → System → Recovery → Advanced startup → Restart now
+
+Then:
+
+Troubleshoot → Advanced options → UEFI Firmware Settings → Restart
+
+In the firmware interface:
+
+Check that USB boot is enabled or available.
+
+Check the boot menu or boot order.
+
+To undo previous firmware changes, use Load Setup Defaults,
+Restore Defaults, or Optimized Defaults.
+
+Save and restart.
+
+Open the one-time boot menu and select the PCSB USB.
+
+Exact names vary by manufacturer.
+
+7. Resetting BIOS/UEFI Safely
+
+Prefer the firmware's built-in Restore Defaults option or the
+manufacturer's documented recovery procedure.
+
+Removing the CMOS/RTC battery is not a universal password-reset method
+on modern computers. This guide does not provide instructions for
+removing the battery, shorting motherboard pins, using master passwords,
+or otherwise defeating firmware passwords or security controls.
+
+If firmware is password-locked and you are the legitimate owner, use the
+manufacturer's official recovery/support process.
+
+8. Start PCSB Mini OS
+
+Boot from USB 1 --- PCSB Mini OS.
+
+Before erasing anything, verify the target disk carefully:
+
+Model
+
+Capacity
+
+Serial number
+
+Bus type
+
+[!CAUTION] Never assume that Disk 0 is automatically the correct
+Windows disk.
+
+9. Install PCSB
+
+After preparing the target disk, use USB 2 --- PCSB Installation.
+
+Start the PCSB installer, select the intended empty target disk, and
+continue through Windows Setup.
+
+10. Complete Workflow
+
+Install PCSB USB Creator
+          ↓
+Create USB 1 — PCSB Mini OS
+          ↓
+Create USB 2 — PCSB Installation
+          ↓
+Restart target computer
+          ↓
+Open UEFI Boot Menu
+          ↓
+Boot USB 1
+          ↓
+Start PCSB Mini OS
+          ↓
+Verify and prepare target disk
+          ↓
+Use USB 2
+          ↓
+Install PCSB
+          ↓
+First PCSB boot
+
+11. Troubleshooting
+
+PCSB USB Creator says MISSING
+
+Verify that PCSB has access to:
+
+PCSB-WIPE-FINAL.iso
+PCSB-FINAL-TEST.iso
+
+No USB drive is detected
+
+Reconnect the drive, select Refresh, and verify that Windows itself
+detects the USB device.
+
+USB was created but does not boot
+
+Try the one-time UEFI boot menu first. If it is still absent, enter
+UEFI Firmware Settings through Windows Advanced Startup and check
+the manufacturer's USB-boot settings.
+
+Administrator access is unavailable
+
+Do not bypass the restriction. Sign in with an authorized administrator
+account or ask the owner/administrator to approve the UAC request.
+
+Safety
+
+PCSB USB Creator formats physical storage devices, and PCSB Mini OS can
+erase an internal target disk. Always verify disk model, capacity, and
+identifying information before confirming an erase operation.
+
+PCSB is intended only for computers and storage devices that you own or
+have explicit authorization to modify.
