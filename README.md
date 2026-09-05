@@ -12,24 +12,26 @@
 ---
 
 > [!WARNING]
-> **Read this before starting**
+>**Read this before starting**
+>
+> PCSB is a script that can bypass and delete unautorised content on the PC
+>
+> Proceed at your own risk; under no circumstances does PCSB recommend this method, nor is it liable for any potential penalties or PC failure.
 >
 > PCSB USB Creator formats USB drives, and PCSB Mini OS can erase an internal disk.
 >
 > **Back up all important files before continuing.**
->
-> Only use PCSB on computers and storage devices that you own or are explicitly authorized to modify.
+
 
 ## 📋 What you need
 
 | Requirement | Description |
 |---|---|
-| 🖥️ **Computer** | Windows 10 or Windows 11 |
-| 🔐 **Permissions** | Authorized administrator access |
-| 💾 **USB drives** | Two USB drives |
-| 🛠️ **Software** | PCSB USB Creator |
-| 1️⃣ **Mini OS** | `PCSB-WIPE-FINAL.iso` |
-| 2️⃣ **Installer** | `PCSB-FINAL-TEST.iso` |
+| 🖥️ **The Bricked Computer** | Windows 10 or Windows 11 |
+| 💾 **USB drives** | Two USB drives with 16GB storage |
+| 🛠️ **Software** | PCSB USB Creator (download with the MEGA link on the release) |
+| 1️⃣ **Mini OS** | `PCSB-WIPE-FINAL.iso` (included in the zip) |
+| 2️⃣ **Installer** | `PCSB-FINAL-TEST.iso` (included in the zip) |
 
 > [!IMPORTANT]
 > PCSB uses **two different USB drives**.
@@ -43,20 +45,10 @@
 
 PCSB USB Creator requires administrator privileges because it needs direct access to physical USB drives.
 
-### Recommended method
+### Recommended method if you don't have administrator account
 
-1. Right-click **PCSB USB Creator**.
-2. Click **Run as administrator**.
-3. Approve the Windows UAC prompt.
-
-> [!TIP]
-> If Windows requests administrator credentials, use an account that is authorized to administer the computer.
-
-### Optional dedicated PCSB account
-
-If you are **already using an authorized elevated Command Prompt**, you can optionally create a dedicated PCSB local administrator account.
-
-Open **Command Prompt as administrator** and run:
+1. Press Shift whle restarting the PC or go to Settings -> System -> Advanced Startup
+2.Click on Troubleshooting option then click on command prompt and run :
 
 ```cmd
 net user PCSBAdmin * /add
@@ -69,16 +61,12 @@ On some French Windows installations, the Administrators group is named `Adminis
 net localgroup Administrateurs PCSBAdmin /add
 ```
 
-You can then sign out and sign in to:
+You can then REBOOT and sign in to:
 
 ```text
 PCSBAdmin
 ```
 
-> [!IMPORTANT]
-> These commands must be run from an **already-authorized administrator session**.
->
-> They are not intended to bypass an administrator password, parental controls, organizational restrictions, or another computer's security.
 
 ---
 
@@ -221,9 +209,9 @@ Troubleshoot
         ↓
 Advanced options
         ↓
-UEFI Firmware Settings
+Boot from a EFI USB drive
         ↓
-Restart
+Choose it
 ```
 
 The computer should restart directly into its BIOS/UEFI configuration.
@@ -254,35 +242,6 @@ Then:
 
 ---
 
-# 🔄 7. Restore BIOS / UEFI defaults
-
-If firmware settings were changed previously and USB boot no longer works correctly, use the firmware's built-in reset function.
-
-Look for an option such as:
-
-```text
-Load Setup Defaults
-Restore Defaults
-Load Optimized Defaults
-Factory Defaults
-```
-
-Confirm the reset.
-
-Then select:
-
-**Save & Exit**
-
-After restarting, try the boot menu again.
-
-> [!WARNING]
-> **Do not use hardware password-bypass tricks.**
->
-> Removing the CMOS/RTC battery is **not a universal BIOS-password reset method** on modern computers.
->
-> If your own computer has a firmware password that you cannot recover, use the manufacturer's official recovery procedure.
-
----
 
 # 🧹 8. Start PCSB Mini OS
 
