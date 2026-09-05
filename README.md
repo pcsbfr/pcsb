@@ -3,47 +3,65 @@
   <img src="assets/logo.png" alt="PCSB Logo" width="320">
 </p>
 
-[!WARNING] ### Read this before starting PCSB USB Creator formats
-USB drives, and the PCSB Mini OS can erase an internal disk.
+<div align="center">
 
-Back up anything important first. Only use PCSB on computers and
-storage devices that you own or are explicitly authorized to modify.
+💻 PCSB
+
+Clean. Simple. Yours.
+
+Complete installation guide
+
+</div>
+
+[!WARNING]
+
+Read this before starting
+
+PCSB USB Creator formats USB drives, and PCSB Mini OS can erase an internal disk.
+
+Back up all important files first. Only use PCSB on computers and storage devices that you own or are explicitly authorized to modify.
 
 📋 What you need
 
-   Requirement
+Requirement
 
-🖥️   Windows 10 or Windows 11 PC
-🔐   Authorized administrator access
-💾   2 USB drives
-🛠️   PCSB USB Creator
-1️⃣   PCSB-WIPE-FINAL.iso
-2️⃣   PCSB-FINAL-TEST.iso
+Description
 
-The two USB drives
+🖥️ Computer
 
-Drive                   Image                   Role
+Windows 10 or Windows 11
 
-USB 1 --- Mini OS   PCSB-WIPE-FINAL.iso   Boot PCSB Mini OS and
-prepare the target PC
+🔐 Permissions
+
+Authorized administrator access
+
+💾 USB drives
+
+Two USB drives
+
+🛠️ Software
+
+PCSB USB Creator
+
+1️⃣ Mini OS
+
+PCSB-WIPE-FINAL.iso
+
+2️⃣ Installer
+
+PCSB-FINAL-TEST.iso
+
+[!NOTE]
+USB 1 contains the PCSB Mini OS. USB 2 contains the full PCSB installer.
 
 🔐 1. Administrator access
 
-PCSB USB Creator needs administrator privileges because it accesses and
-reformats physical USB drives.
+Right-click PCSB USB Creator → Run as administrator, then approve the UAC prompt.
 
-Normal method
+[!TIP]
+If Windows requests administrator credentials, use an account authorized to administer the computer.
 
-Right-click PCSB USB Creator → Run as administrator, then
-approve the Windows UAC prompt.
-
-[!TIP] If Windows asks for administrator credentials, use an account
-that is authorized to administer the computer.
-
-Optional dedicated PCSB account
-
-If you are already inside an authorized elevated Command Prompt, you
-can create a dedicated local account:
+If you are already in an authorized elevated Command Prompt, you can optionally create a dedicated PCSB account:
 
 net user PCSBAdmin * /add
 net localgroup Administrators PCSBAdmin /add
@@ -52,121 +70,125 @@ On some French Windows installations:
 
 net localgroup Administrateurs PCSBAdmin /add
 
-[!IMPORTANT] These commands require an already-authorized
-administrator session. They are not a method for bypassing an
-administrator password, parental/organization restrictions, or another
-computer's security.
+[!IMPORTANT]
+These commands require an already-authorized administrator session. They are not a method for bypassing an administrator password or other security restrictions.
 
-💾 2. Create USB 1 --- PCSB Mini OS
+💾 2. Create USB 1 — PCSB Mini OS
 
-Connect your first USB drive and open PCSB USB Creator.
+Connect the first USB drive.
+
+Open PCSB USB Creator as administrator.
 
 Find PCSB Mini OS USB.
 
-Select the correct USB drive.
+Select the correct USB.
 
-Check the disk number, model and capacity.
+Verify the disk number, model and capacity.
 
 Click Flash USB.
 
-Confirm the erase warning.
+Confirm and wait for completion.
 
-Wait until the operation finishes.
+[!CAUTION]
 
-[!CAUTION] ## ⚠️ USB 1 WILL BE ERASED Everything currently stored
-on the selected USB drive will be permanently deleted.
+⚠️ USB 1 WILL BE ERASED
+
+Everything on the selected USB drive will be permanently deleted.
 
 Check the drive model and capacity before confirming.
 
-When finished:
-
 USB 1
 └── PCSB Mini OS
-    └── Source: PCSB-WIPE-FINAL.iso
+    └── PCSB-WIPE-FINAL.iso
 
-💿 3. Create USB 2 --- PCSB Installer
+💿 3. Create USB 2 — PCSB Installer
 
-Connect your second USB drive.
+Connect the second USB drive.
 
 Find PCSB Installation USB.
 
-Select the second USB drive.
+Select the second USB.
 
-Verify its model and capacity.
+Verify its disk number, model and capacity.
 
 Click Flash USB.
 
-Confirm the warning.
+Confirm and wait for completion.
 
-Wait for completion.
+[!CAUTION]
 
-[!NOTE] If install.wim is too large for FAT32, PCSB USB Creator
-automatically splits it into .swm files. This is normal and Windows
-Setup supports this installation format.
+⚠️ USB 2 WILL BE ERASED
 
-When finished:
+Everything on the selected second USB drive will be permanently deleted.
+
+[!NOTE]
+If install.wim is too large for FAT32, PCSB USB Creator automatically splits it into .swm files. This is expected.
 
 USB 2
 └── PCSB Installation
-    └── Source: PCSB-FINAL-TEST.iso
+    └── PCSB-FINAL-TEST.iso
 
-🚀 4. Boot PCSB from USB
+🚀 4. Boot from USB
 
-Connect USB 1 --- PCSB Mini OS to the target computer.
+Connect USB 1 — PCSB Mini OS, shut down the computer, turn it on, and immediately open the manufacturer's one-time boot menu.
 
-Shut down the PC, turn it back on, and immediately open the
-manufacturer's one-time boot menu.
+Manufacturer
 
-Manufacturer   Common boot key
+Common key
 
-HP             Esc → F9
-Dell           F12
-Lenovo         F12
-ASUS           Esc
-Acer           F12
-MSI            F11
+HP
 
-Then select something similar to:
+Esc → F9
+
+Dell
+
+F12
+
+Lenovo
+
+F12
+
+ASUS
+
+Esc
+
+Acer
+
+F12
+
+MSI
+
+F11
+
+Select:
 
 UEFI: <your USB drive>
 
-[!TIP] Prefer the one-time boot menu instead of permanently
-changing the boot order.
+[!TIP]
+Prefer the one-time boot menu instead of permanently changing the boot order.
 
 🛠️ 5. USB does not appear?
 
-If Windows still starts normally, enter the firmware through Windows
-Advanced Startup.
+If Windows still starts normally:
 
-Windows 11
+Settings → System → Recovery → Advanced startup → Restart now
 
-Go to:
-
-Settings
-   ↓
-System
-   ↓
-Recovery
-   ↓
-Advanced startup
-   ↓
-Restart now
-
-After the computer restarts:
+Then select:
 
 Troubleshoot
-   ↓
+    ↓
 Advanced options
-   ↓
+    ↓
 UEFI Firmware Settings
-   ↓
+    ↓
 Restart
 
-Your computer should enter its BIOS/UEFI settings.
+[!NOTE]
+Menu names can vary slightly depending on Windows and the computer manufacturer.
 
-⚙️ 6. Check the BIOS / UEFI
+⚙️ 6. BIOS / UEFI settings
 
-Look for sections named something similar to:
+Look for sections such as:
 
 Boot
 
@@ -178,66 +200,54 @@ Startup
 
 UEFI Boot
 
-Check that USB boot is available.
-
-Save your changes, restart the computer, open the one-time boot menu
-again, and select the PCSB USB.
-
-[!NOTE] Firmware menus differ between manufacturers and models, so
-the exact names may be different.
+Check that USB boot is available, save any changes, restart, and select the PCSB USB from the one-time boot menu.
 
 🔄 7. Restore BIOS / UEFI defaults
 
-If boot settings were changed previously, use the firmware's built-in
-reset option.
-
-Look for:
+If firmware settings were changed previously, look for:
 
 Load Setup Defaults
 Restore Defaults
 Load Optimized Defaults
 Factory Defaults
 
-Confirm it, then select Save & Exit.
+Confirm, then choose Save & Exit.
 
-[!WARNING] ### Do not use hardware password-bypass tricks Removing
-a CMOS/RTC battery is not a universal BIOS-password reset method
-on modern PCs.
+[!WARNING]
 
-This guide does not cover shorting motherboard pins, master-password
-generators, or defeating firmware security.
+BIOS / UEFI security
 
-If your own computer has a firmware password you cannot recover, use
-the manufacturer's official recovery procedure.
+Removing the CMOS/RTC battery is not a universal BIOS-password reset method on modern PCs.
+
+If your own computer has a firmware password you cannot recover, use the manufacturer's official recovery procedure.
 
 🧹 8. Start PCSB Mini OS
 
 Boot from USB 1.
 
-PCSB Mini OS is the preparation environment used before installing the
-full system.
-
 Before erasing anything, verify:
 
 Disk model
 
-Disk capacity
+Capacity
 
 Serial number
 
 Bus type
 
-[!CAUTION] # ⚠️ DISK ERASURE Preparing the target disk can
-permanently remove the existing operating system, partitions and
-personal files.
+[!CAUTION]
 
-Never assume that Disk 0 is automatically the correct disk.
+⚠️ INTERNAL DISK ERASURE
+
+Preparing the target disk can permanently remove the operating system, partitions and personal files.
+
+Never assume Disk 0 is automatically the correct disk.
 
 🪟 9. Install PCSB
 
-After the target disk has been prepared:
+After preparing the intended target disk:
 
-Use USB 2 --- PCSB Installation.
+Use USB 2 — PCSB Installation.
 
 Start PCSB Setup.
 
@@ -245,34 +255,28 @@ Select the intended empty target disk.
 
 Continue through Windows Setup.
 
-Wait for installation and the first PCSB boot.
+Complete the first PCSB boot.
 
-🗺️ Complete PCSB workflow
+🗺️ Complete workflow
 
-┌──────────────────────────┐
-│   PCSB USB Creator       │
-└────────────┬─────────────┘
-             │
-      ┌──────┴──────┐
-      ▼             ▼
-┌───────────┐  ┌──────────────┐
-│   USB 1   │  │    USB 2     │
-│ Mini OS   │  │ Installation │
-└─────┬─────┘  └──────┬───────┘
-      │               │
-      ▼               │
- Boot target PC       │
-      │               │
-      ▼               │
+PCSB USB Creator
+       │
+       ├──────────────┐
+       ▼              ▼
+ USB 1 Mini OS    USB 2 Installer
+       │              │
+       ▼              │
+ Boot USB 1           │
+       │              │
+       ▼              │
  PCSB Mini OS         │
-      │               │
-      ▼               │
+       │              │
+       ▼              │
  Verify target disk   │
-      │               │
-      ▼               │
- Prepare target disk  │
-      │               │
-      └───────┬───────┘
+       │              │
+       ▼              │
+ Prepare disk         │
+       └──────┬───────┘
               ▼
          PCSB Setup
               │
@@ -286,46 +290,58 @@ Wait for installation and the first PCSB boot.
 
 ❌ PCSB USB Creator shows MISSING
 
-PCSB must be able to locate:
+Verify that PCSB can access:
 
 PCSB-WIPE-FINAL.iso
 PCSB-FINAL-TEST.iso
 
-Verify that both installation images are present in the PCSB data
-directory.
-
 ❌ No USB drive detected
 
-Disconnect and reconnect the USB drive.
+Disconnect and reconnect it.
 
 Wait a few seconds.
 
 Click Refresh.
 
-Check that Windows detects the USB drive.
+Check that Windows detects it.
 
 Try another USB port.
 
-❌ USB created successfully but it does not boot
+❌ USB created but does not boot
 
-Try, in order:
+Try the one-time UEFI boot menu.
 
-The manufacturer's one-time boot menu.
+Select the explicit UEFI USB entry.
 
-The explicit UEFI entry for the USB.
+Try another USB port.
 
-Another USB port.
+Use Advanced startup → UEFI Firmware Settings.
 
-Advanced startup → UEFI Firmware Settings.
+Check USB boot settings.
 
-The firmware's built-in Restore Defaults option.
+Restore firmware defaults if appropriate.
 
 🔐 Administrator access unavailable
 
-Use an authorized administrator account or ask the computer's
-owner/administrator to approve the UAC request.
+Use an authorized administrator account or ask the owner/administrator to approve the UAC request.
 
-[!IMPORTANT] ## Final safety check Before every destructive
-operation, check what physical disk PCSB selected.
+[!IMPORTANT]
 
-A wrong disk selection can permanently destroy data.
+Final safety check
+
+Before every destructive operation, verify the physical disk model, capacity and identity.
+
+Selecting the wrong disk can permanently destroy data.
+
+[!CAUTION]
+Test disk-erasure features on a disposable test disk or virtual machine whenever possible.
+
+<div align="center">
+
+💻 PCSB
+
+Clean. Simple. Yours.
+
+For systems and storage devices you own or are explicitly authorized to modify.
+
+</div>
